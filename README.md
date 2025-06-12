@@ -1,85 +1,55 @@
-# Check your Balance
+# 🧠 Decentralized Notes App – Motoko + React + Internet Computer
 
-1. Find out your principal id:
+This project is a simple decentralized notes application built on the **Internet Computer** using **Motoko** (for the backend canister logic) and **React** (for the frontend interface). It also includes **authentication** using DFINITY's `AuthClient`.
 
-```
-dfx identity get-principal
-```
+> 📌 Built as part of a course to explore Web3 development and understand how decentralized apps (dApps) work under the hood.
 
-2. Save it somewhere.
+---
 
-e.g. My principal id is: first-dhcgk-hdur2-vkop6-lpaxe-a6px7-ap6hu-gb47n-2puob-gopxa-nqe
+## 🚀 Features
 
+- 📓 Add and view notes (or data) stored on-chain.
+- 🔐 Authentication using Internet Identity (DFINITY AuthClient).
+- 🧠 Backend written in Motoko and deployed as a canister.
+- ⚛️ Frontend powered by React, connected to the backend using generated interfaces.
+- 🛡️ Authenticated users can perform actions linked to their `Principal`.
 
-3. Format and store it in a command line variable:
-```
-OWNER_PUBLIC_KEY="principal \"$( \dfx identity get-principal )\""
-```
+---
 
-4. Check that step 3 worked by printing it out:
-```
-echo $OWNER_PUBLIC_KEY
-```
+## 🧰 Tech Stack
 
-5. Check the owner's balance:
-```
-dfx canister call token balanceOf "( $OWNER_PUBLIC_KEY )"
-```
+| Layer         | Tech                          |
+|---------------|-------------------------------|
+| Frontend      | React, JavaScript             |
+| Backend       | Motoko (canister logic)       |
+| Auth          | DFINITY `@dfinity/auth-client` |
+| Platform      | Internet Computer (ICP)       |
+| Dev Tools     | `dfx`, `npm`, `ic-repl`       |
 
-# Charge the Canister
+---
 
+## 🧪 Getting Started
 
-1. Check canister ID:
-```
-dfx canister id token
-```
+### Prerequisites
 
-2. Save canister ID into a command line variable:
-```
-CANISTER_PUBLIC_KEY="principal \"$( \dfx canister id token )\""
-```
+- Node.js (v16+)
+- DFX SDK (from [https://smartcontracts.org](https://smartcontracts.org))
 
-3. Check canister ID has been successfully saved:
-```
-echo $CANISTER_PUBLIC_KEY
-```
+### Local Setup
 
-4. Transfer half a billion tokens to the canister Principal ID:
-```
-dfx canister call token transfer "($CANISTER_PUBLIC_KEY, 500_000_000)"
-```
+```bash
+# Clone the project
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
 
-# Deploy the Project to the Live IC Network
+# Install frontend dependencies
+npm install
 
-1. Create and deploy canisters:
+# Start the local DFX network
+dfx start --background
 
-```
-dfx deploy --network ic
-```
+# Deploy the canister
+dfx deploy
 
-2. Check the live canister ID:
-```
-dfx canister --network ic id token
-```
-
-3. Save the live canister ID to a command line variable:
-```
-LIVE_CANISTER_KEY="principal \"$( \dfx canister --network ic id token )\""
-```
-
-4. Check that it worked:
-```
-echo $LIVE_CANISTER_KEY
-```
-
-5. Transfer some tokens to the live canister:
-```
-dfx canister --network ic call token transfer "($LIVE_CANISTER_KEY, 50_000_000)"
-```
-
-6. Get live canister front-end id:
-```
-dfx canister --network ic id token_assets
-```
-7. Copy the id from step 6 and add .raw.ic0.app to the end to form a URL.
-e.g. zdv65-7qaaa-aaaai-qibdq-cai.raw.ic0.app
+# Start the React frontend
+npm start
